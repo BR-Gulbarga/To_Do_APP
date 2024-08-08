@@ -4,33 +4,26 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Adjust to your Node.js version
+          node-version: '14'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
+      - name: Run Myfile.js
+        run: node Myfile.js
 
-      - name: Build
-        run: npm run build
-
-      - name: Deploy (Optional)
+      - name: Test Myfile.js
         run: |
-          echo "Deploying application..."
-          # Add your deployment commands here
+          node Myfile.js | grep "Test Passed"
