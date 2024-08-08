@@ -1,29 +1,27 @@
-name: CI Pipeline
+name: Hello world workflow
 
-on:
-  push:
+on: 
+  push: 
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  build:
+  hello:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+      - name: Print hello world
+        run: echo "Hello world"
+        shell: bash
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Myfile.js
-        run: node Myfile.js
-
-      - name: Test Myfile.js
-        run: |
-          node Myfile.js | grep "Test Passed"
+  goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print goodbye world
+        run: echo "Goodbye world"
+        shell: bash
