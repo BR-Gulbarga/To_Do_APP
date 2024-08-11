@@ -16,8 +16,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Add any other steps needed for your build process
-      # For example, if you're using a static site generator or a different build tool
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Use the Node.js version that matches your project requirements
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
 
       - name: Deploy
         run: |
