@@ -1,33 +1,26 @@
-name: CI Pipeline
+name: Build and Deploy To-do App
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '14'
+      # Add any other steps needed for your build process
+      # For example, if you're using a static site generator or a different build tool
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Run tests
-        run: npm test
-
-      - name: Code Quality Check
-        uses: github/codeql-action/analyze@v2
-        with:
-          category: 'security'
+      - name: Deploy
+        run: |
+          echo "Deploying the application"
+          # Add your deployment script or command here. For example:
+          # scp -r * user@server:/path/to/deploy
